@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class TextAdventure {
 
     //Hero Stats
-    public static int maxHealth;
+    public static int maxHealth = 1000;
     public static int currHealth;
     public static int mana;
-    public static int attack;
+    public static int attack = 2;
     public static int defense;
 
     //Enemy Stats
-    public static int enemyHealth;
+    public static int enemyHealth = 10;
     public static int currEHealth;
     public static int enemyMana;
     public static int enemyAttack;
@@ -28,7 +28,9 @@ public class TextAdventure {
         defense = 50;
 
         for (int i = 0; i < currHealth; i++) {
-
+//            if (currHealth == 0){
+//
+//            }
         }
     }
 
@@ -50,8 +52,14 @@ public class TextAdventure {
         }
 
         public static boolean attack() {
-            System.out.println("Enemy Hit!");
-            enemyHealth = enemyHealth - attack;
+           for(int i = 0; i > enemyHealth; i--) {
+               playerOne();
+//               if(attack){
+//
+//               }
+               System.out.println("Enemy Hit!");
+               enemyHealth = enemyHealth - attack;
+           }
             return true;
         }
         public static boolean run() {
@@ -60,32 +68,119 @@ public class TextAdventure {
         }
 
         //This is the creation of the fighting method
-        public static void fight(){
+//        public static void fight(){
+//        Scanner s = new Scanner(System.in);
+//        String action;
+//        System.out.println("An enemy is about to attack...What will you do?");
+//        System.out.println("Attack[a]   Run[b]");
+//        action = s.nextLine();
+//System.out.println(action);
+//        goblin();
+//        fighting = true;
+//
+//        if (action.equals('a')){
+//            System.out.println("Print");
+//        }
+//        if(action.charAt(0) == 'a') {
+//            fighting = attack();
+//        }
+//            while (fighting = true) {
+//                if (action.equals('a')) {
+//                    attack();
+//                }
+//                else if (action.equals('b')) {
+//                    run();
+//                }
+//            }
+//        while(true) {
+//            if (enemyHealth == 0) {
+//                System.out.println("You have won the battle!");
+//            } else if (currHealth == 0) {
+//                System.out.println("You have lost...");
+//            }
+//        }
+//    }
+
+    public static void fight(){
         Scanner s = new Scanner(System.in);
-        String action;
-        System.out.println("An enemy is about to attack...What will you do?");
-        System.out.println("Attack[a]   Run[b]");
-        action = s.nextLine();
+        System.out.println("\n------------------------------------------------------------------\n");
+        System.out.println("Your HP: "+ maxHealth);
+        System.out.println("Monster HP: " + enemyHealth);
+        System.out.println("\n1: Attack");
+        System.out.println("2: Run");
+        System.out.println("\n------------------------------------------------------------------\n");
 
-        goblin();
-        fighting = true;
+        int choice = s.nextInt();
 
-        while(fighting = true) {
-            if (action.equals('a')) {
-                attack();
-            }
-            if (action.equals('b')) {
-                run();
-            }
+        if(choice==1){
+            playerAttack();
+        }
+        else if(choice==2){
+            run();
+        }
+        else{
+            fight();
+        }
+    }
+
+    public static void playerAttack() {
+        int attack = 2;
+
+
+        if (attack == ('a')) {
+            attack = new java.util.Random().nextInt(5);
         }
 
+        System.out.println("You attacked the monster and gave " + attack + " damage!");
+
+        enemyHealth = enemyHealth - attack;
+
+        System.out.println("Monster HP: " + enemyHealth);
+
+        if (enemyHealth < 1) {
+//            win();
+            System.out.println("You have won!");
+        } else if (enemyHealth > 0) {
+            int monsterDamage = 0;
+
+            monsterDamage = new java.util.Random().nextInt(4);
+
+            System.out.println("The monster attacked you and gave " + monsterDamage + " damage!");
+
+            maxHealth = maxHealth - monsterDamage;
+
+            System.out.println("Player HP: " + maxHealth);
+
+            if (maxHealth < 1) {
+                System.out.println("You dies you fool!");
+//                dead();
+            } else if (maxHealth > 0) {
+                fight();
+            }
+        }
     }
+//        public static void win() {
+//            System.out.println("\n------------------------------------------------------------------\n");
+//            System.out.println("You killed the goblin!");
+//            System.out.println("\n------------------------------------------------------------------\n");
+//
+////            silverRing = 1;
+//            Scanner s = new Scanner(System.in);
+//            int choice = s.nextInt();
+//            if(choice==1){
+//                win();
+//            }
+////            else{
+////                win();
+//        }
+//        return;
+//    }
 
 ////////////////////////////////////////////////////
 
 
-    //This is the input at the start of the game.
-    public static void main (String[] args){
+        //This is the input at the start of the game.
+        public static void main (String[] args){
             Scanner s = new Scanner(System.in);
 
             //Prompts the user to input a new name for their persona
@@ -120,13 +215,14 @@ public class TextAdventure {
                 }
             }
 
-            System.out.println("A wild goblin appears!");
-            String userInput = s.nextLine();
-
-
-
+//            System.out.println("A wild goblin appears!");
+//            String userInput = s.nextLine();
 
 
         }
-
 }
+
+
+
+
+
